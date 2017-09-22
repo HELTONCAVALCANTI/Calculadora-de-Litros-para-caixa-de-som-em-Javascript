@@ -1,0 +1,105 @@
+<html>
+<head>
+	<title></title>
+
+	<script type="text/javascript">
+		
+
+		function fecha(){
+			document.getElementById('openModal').style = "display: none;";
+			window.location = "index.php";
+		}
+
+
+		function pos(){
+			document.getElementById('openModal').style = "z-index:9999999; display: block; float: left; width:350px; height:200px; margin-left:40%; margin-top: 20%; background-color: #000; color: #fff; padding-left: 20px;";
+			document.getElementById('cCalc').style = "display: none;";
+		}
+
+		function calculaCaixa(){
+
+			var mad  = document.getElementById('madeira').value;
+			var larg = document.getElementById('largura').value;
+			var alt  = document.getElementById('altura').value;
+			var prof = document.getElementById('profundidade').value;
+
+			
+
+			modaljs = function(title,body) {
+
+				var was = document.body.innerHTML;
+
+				document.body.innerHTML = was + "<div id='openModal' style='' class='modal'><div><a href='#close' style=' color:#fff; text-decoration: none;' title='Close' class='close' alink='#fff' onclick='(fecha())'>X</a><h2>" + title + "</h2><p>" + body + "</p></div></div>";
+
+				pos();
+
+				window.location = "#openModal";
+
+			}
+
+
+			mad  = mad/10;
+
+			larg = larg - (mad*2);
+			alt  = alt  - (mad*2);
+			prof = prof - (mad*2);
+
+			//var d   = new Date();
+			//var arr = d.toString().split('');
+			//var f = `${arr[2]} ${arr[1]} ${arr[3]}`;
+
+			var resultado = (larg * alt * prof) / 1000;
+
+
+						//setTimeout(function() {}, 3000);
+
+						modaljs('Calculo - Caixa de Som', `Sua caixa tem ${resultado} litros`);
+
+						//alert("Sua caixa tem: \n\n" + resultado + " litros.\n\n" + Date());
+
+
+						//document.getElementById('modal').style="display: true;";
+						//document.getElementById('modal').innerHTML = resultado;
+
+					}
+
+
+
+				</script>
+
+			</head>
+			<!--<body onload="calculaCaixa()">-->
+
+			<body style="background-color: #c0c0c0;">
+
+				<div id="cCalc">
+					<form style="margin-left: 35%; margin-top: auto; width: 20%; padding-top: 100px;">
+
+						<fieldset style=" border: 0px; width: 250px; padding-left: 90px; padding-top: 40px; padding-bottom: 50px; background-color: #000;">
+
+							<legend style="padding-top: 80px; font-family: roboto; color: red;">Calculo de Caixa de som</legend>
+							<label style="color: red;">Madeira</label><br>
+							<input id="madeira" value="" style="color: red;" autofocus="true" placeholder="mm"></input>
+
+							<br><br>
+							<label style="color: red;">Largura:</label><br>
+							<input id="largura" value="" style="color: red;" placeholder="cm" ></input>
+
+							<br><br>
+							<label style="color: red;">Altura:</label><br>
+							<input id="altura" value="" style="color: red;" placeholder="cm"></input>
+
+							<br><br>
+							<label style="color: red;">Profundidade:</label><br>
+							<input id="profundidade" value="" style="color: red;" placeholder="cm" ></input>
+
+							<br>
+							<p id="m_resultado" style="color: #fff;"></p>
+							<br>
+							<button onclick="calculaCaixa()" style="border-radius: 5px; height: 50px; width: 170px; background-color: cian; margin-top: 50px; color: red;"><b>CALCULAR</b></button>
+
+						</form>
+					</fieldset>
+				</div>
+			</body>
+			</html>
